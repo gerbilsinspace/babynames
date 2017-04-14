@@ -12,7 +12,7 @@ import messages from './messages';
 export class ListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     const { name, gender, Grace, Joe } = this.props;
-    console.log(Grace, Joe);
+
     return (
       <li>
         <h2>{name}</h2>
