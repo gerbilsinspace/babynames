@@ -1,0 +1,50 @@
+/*
+ *
+ * List
+ *
+ */
+
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
+import ListItem from 'containers/ListItem';
+import messages from './messages';
+
+export class List extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
+  render() {
+    const { babyNames } = this.props;
+
+    return (
+      <div>
+        <FormattedMessage {...messages.header} />
+
+        <ul>
+          {babyNames.map(babyName =>
+            <ListItem
+              key={babyName.id}
+              {...babyName}
+            />
+          )}
+        </ul>
+      </div>
+    );
+  }
+}
+
+List.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    babyNames: state.toObject().babyNames,  
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(List);
