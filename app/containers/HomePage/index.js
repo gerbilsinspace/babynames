@@ -18,7 +18,7 @@ import BabyName from 'containers/BabyName';
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-    	<div>
+    	<div style={{margin: "20px auto", maxWidth: "800px", }}>
       	<PersonChooser />
       	<Menu />
       	<BabyName />
