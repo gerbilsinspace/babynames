@@ -17,7 +17,7 @@ export class List extends React.PureComponent { // eslint-disable-line react/pre
 
     return (
       <div>
-        <FormattedMessage {...messages.header} />
+        <h1><FormattedMessage {...messages.header} /></h1>
         <Filter />
         <ul>
           {babyNames.map(babyName =>

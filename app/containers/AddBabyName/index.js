@@ -21,7 +21,9 @@ export class AddBabyName extends React.PureComponent { // eslint-disable-line re
 
     return (
       <div>
-        <FormattedMessage {...messages.header} />
+        <h1>
+          <FormattedMessage {...messages.header} />
+        </h1>
         <form onSubmit={(e) => {
           e.preventDefault();
 

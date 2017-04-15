@@ -33,7 +33,7 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
 
     if (!editBabyName) {
       return (
-        <div>You have finished rating all the Baby Names so far!</div>
+        <h1>You have finished rating all the Baby Names so far!</h1>
       )
     }
 
@@ -45,7 +45,7 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
 
     return (
       <div>
-        <h1>{ babyNameDetails.name }</h1>
+        <h2>{ babyNameDetails.name }</h2>
         <p>Name: { babyNameDetails.name }</p>
         <p>Gender: { babyNameDetails.gender }</p>
         <form>

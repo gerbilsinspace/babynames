@@ -19,20 +19,24 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
     if (personChooser) {
       if (!menu) {
         return (
-          <form>
-            <input type="button" value={messages.addBabyName.defaultMessage} onClick={() => {
-              onButtonClick("addBabyName")
-            }}></input>
+          <div>
+            <h1>Menu</h1>
 
-            <input type="button" value={messages.rateBabyName.defaultMessage} onClick={() => {
-              onButtonClick("rateBabyName")
-            }}></input>          
+            <form>
+              <input type="button" value={messages.addBabyName.defaultMessage} onClick={() => {
+                onButtonClick("addBabyName")
+              }}></input>
 
-            <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
-              onButtonClick("listBabyNames")
-            }}></input>
+              <input type="button" value={messages.rateBabyName.defaultMessage} onClick={() => {
+                onButtonClick("rateBabyName")
+              }}></input>          
 
-          </form>
+              <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
+                onButtonClick("listBabyNames")
+              }}></input>
+
+            </form>
+          </div>
         );
       }
 
