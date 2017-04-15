@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import firebase from 'data/firebase';
 import { selectMenu } from 'containers/Menu/actions';
+import { editBabyName } from 'containers/EditBabyName/actions';
 import messages from './messages';
 
 export class EditBabyName extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -81,6 +82,7 @@ function mapDispatchToProps(dispatch) {
     onLikeClick: (personChooser, babyName, likeFactor) => {
       firebase.editBabyName(personChooser, babyName, likeFactor);
       dispatch(selectMenu(''));
+      dispatch(editBabyName(''));
     }
   };
 }
