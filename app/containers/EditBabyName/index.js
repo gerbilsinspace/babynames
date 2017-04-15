@@ -81,7 +81,6 @@ function mapDispatchToProps(dispatch) {
   return {
     onLikeClick: (personChooser, babyName, likeFactor) => {
       firebase.editBabyName(personChooser, babyName, likeFactor);
-      dispatch(selectMenu(''));
       dispatch(editBabyName(''));
     }
   };
