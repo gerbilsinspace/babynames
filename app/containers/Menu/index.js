@@ -10,10 +10,11 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 import { selectMenu } from './actions';
+import { editBabyName } from 'containers/EditBabyName/actions';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { menu, personChooser, onButtonClick } = this.props;
+    const { menu, personChooser, onButtonClick, onBackButtonClick } = this.props;
 
     if (personChooser) {
       if (!menu) {
@@ -38,7 +39,8 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
       return (
         <form>
           <input type="button" value={messages.back.defaultMessage} onClick={() => {
-            onButtonClick("")
+            onBackButtonClick();
+            onButtonClick("");
           }}></input>
         </form>
       );  
@@ -62,6 +64,10 @@ function mapDispatchToProps(dispatch) {
   return {
     onButtonClick: (link) => {
       dispatch(selectMenu(link));
+    },
+
+    onBackButtonClick: () => {
+      dispatch(editBabyName(""));
     }
   };
 }
