@@ -54,7 +54,7 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
           }}></input>
 
           <input type="button" value="Like" onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, 'Lke');
+            onLikeClick(personChooser, babyNameDetails.name, 'Like');
           }}></input>
 
           <input type="button" value="Dislike" onClick={() => {

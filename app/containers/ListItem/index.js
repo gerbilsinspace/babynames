@@ -17,7 +17,7 @@ class IncludedListItem extends React.PureComponent {
     const { name, gender, Grace, Joe, onEditButtonClick } = this.props;
 
     return (
-      <li>
+      <li style={{margin: "10px", border: "1px solid #ddd", padding: "10px", borderRadius: "3px", display: "inline-block"}}>
         <h2>{name} <small><input type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
