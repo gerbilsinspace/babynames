@@ -48,16 +48,16 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
         <p>Name: { babyNameDetails.name }</p>
         <p>Gender: { babyNameDetails.gender }</p>
         <form>
-          <input type="button" value="Like" onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, 'like');
+          <input type="button" value="Love" onClick={() => {
+            onLikeClick(personChooser, babyNameDetails.name, 'Love');
           }}></input>
 
-          <input type="button" value="Meh" onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, 'meh');
+          <input type="button" value="Like" onClick={() => {
+            onLikeClick(personChooser, babyNameDetails.name, 'Lke');
           }}></input>
 
           <input type="button" value="Dislike" onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, 'dislike');
+            onLikeClick(personChooser, babyNameDetails.name, 'Dislike');
           }}></input>
         </form>
       </div>

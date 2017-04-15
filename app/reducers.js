@@ -12,6 +12,7 @@ import personChooserReducer from 'containers/PersonChooser/reducer';
 import babyNameReducer from 'containers/BabyName/reducer';
 import editBabyNameReducer from 'containers/EditBabyName/reducer';
 import menuReducer from 'containers/Menu/reducer';
+import filterReducer from 'containers/Filter/reducer';
 
 /*
  * routeReducer
@@ -52,6 +53,7 @@ export default function createReducer(asyncReducers) {
     babyNames: babyNameReducer,
     editBabyName: editBabyNameReducer,
     menu: menuReducer,
+    filter: filterReducer,
     ...asyncReducers,
   });
 }

@@ -8,6 +8,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import ListItem from 'containers/ListItem';
+import Filter from 'containers/Filter';
 import messages from './messages';
 
 export class List extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -17,7 +18,7 @@ export class List extends React.PureComponent { // eslint-disable-line react/pre
     return (
       <div>
         <FormattedMessage {...messages.header} />
-
+        <Filter />
         <ul>
           {babyNames.map(babyName =>
             <ListItem
