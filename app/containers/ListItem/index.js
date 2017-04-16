@@ -32,8 +32,8 @@ class IncludedListItem extends React.PureComponent {
         <h2>{name} <small><input style={{background: "#fff"}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
-        <p>Grace: {Grace}</p>
-        <p>Joe: {Joe}</p>
+        <p><FormattedMessage {...messages.femaleName} />: {Grace}</p>
+        <p><FormattedMessage {...messages.maleName} />: {Joe}</p>
       </li>
     );
   }

@@ -21,7 +21,7 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
       if (!menu) {
         return (
           <div>
-            <h1>Menu</h1>
+            <h1><FormattedMessage {...messages.header} /></h1>
 
             <form>
               <input type="button" value={messages.addBabyName.defaultMessage} onClick={() => {

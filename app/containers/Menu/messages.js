@@ -6,6 +6,10 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
+  header: {
+    id: 'app.containers.Menu.header',
+    defaultMessage: 'Menu',
+  },
   addBabyName: {
     id: 'app.containers.Menu.addBabyName',
     defaultMessage: 'Add Baby Name',
@@ -20,6 +24,6 @@ export default defineMessages({
   },
   back: {
     id: 'app.containers.Menu.back',
-    defaultMessage: 'Back',
+    defaultMessage: 'Menu',
   },
 });

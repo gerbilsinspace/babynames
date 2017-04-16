@@ -34,13 +34,13 @@ export class AddBabyName extends React.PureComponent { // eslint-disable-line re
           addBabyName(name.value.trim(), gender.value.trim(), babyNames);
           returnToMainMenu();
         }}>
-          <input type="text" placeholder="Baby Name" ref={(node) => {
+          <input type="text" placeholder={messages.babyName.defaultMessage} ref={(node) => {
             name = node;
           }}></input>
-          <input type="text" placeholder="Gender" ref={(node) => {
+          <input type="text" placeholder={messages.gender.defaultMessage} ref={(node) => {
             gender = node;
           }}></input>
-          <input type="submit" value="Add Baby Name"></input>
+          <input type="submit" value={messages.submit.defaultMessage}></input>
         </form>
       </div>
     );
