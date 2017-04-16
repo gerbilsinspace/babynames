@@ -14,7 +14,7 @@ import { editBabyName } from 'containers/EditBabyName/actions';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { menu, personChooser, onButtonClick, onBackButtonClick } = this.props;
+    const { menu, personChooser, onButtonClick, onBackButtonClick, onListButtonClick } = this.props;
 
     if (personChooser) {
       if (!menu) {
@@ -40,6 +40,21 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
         );
       }
 
+      if (menu === "rateBabyName") {
+        return (
+          <form>
+            <input type="button" value={messages.back.defaultMessage} onClick={() => {
+              onBackButtonClick();
+              onButtonClick("");
+            }}></input>
+
+            <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
+              onListButtonClick();
+            }}></input>
+          </form>
+        );
+      }
+
       return (
         <form>
           <input type="button" value={messages.back.defaultMessage} onClick={() => {
@@ -47,7 +62,7 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
             onButtonClick("");
           }}></input>
         </form>
-      );  
+      );
     }
     
     return null;
@@ -72,6 +87,11 @@ function mapDispatchToProps(dispatch) {
 
     onBackButtonClick: () => {
       dispatch(editBabyName(""));
+    },
+
+    onListButtonClick: () => {
+      dispatch(editBabyName(""));
+      dispatch(selectMenu("listBabyNames"));
     }
   };
 }
