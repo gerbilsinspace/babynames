@@ -11,6 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 import { selectMenu } from './actions';
 import { editBabyName } from 'containers/EditBabyName/actions';
+import { filter } from 'containers/Filter/actions';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -87,10 +88,12 @@ function mapDispatchToProps(dispatch) {
 
     onBackButtonClick: () => {
       dispatch(editBabyName(""));
+      dispatch(filter('All'));
     },
 
     onListButtonClick: () => {
       dispatch(editBabyName(""));
+      dispatch(filter('All'));
       dispatch(selectMenu("listBabyNames"));
     }
   };
