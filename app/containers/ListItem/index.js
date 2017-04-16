@@ -41,16 +41,22 @@ class IncludedListItem extends React.PureComponent {
 
 export class ListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { name, gender, Grace, Joe, filter, onEditButtonClick } = this.props;
+    const { name, gender, Grace, Joe, filter, genderFilter, onEditButtonClick } = this.props;
 
     if (filter === "All") {
-      return (
-        <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-      );
-    }
+      if (genderFilter === "Both") {
+        return (
+          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+        );
+      }
 
-    if (filter === "Love") {
-      if ((Grace === "Love") && (Joe === "Love")) {
+      if ((genderFilter === "Female") && (gender === "Female")) {
+        return (
+          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+        );
+      }
+
+      if ((genderFilter === "Male") && (gender === "Male")) {
         return (
           <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
         );
@@ -59,11 +65,50 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
       return null;
     }
 
-    if (filter === "LikeAndLove") {
-      if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
+    if ((filter === "Love") && ((Grace === "Love") && (Joe === "Love"))) {
+      if (genderFilter === "Both") {
         return (
           <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
         );
+      }
+
+      if ((genderFilter === "Female") && (gender === "Female")) {
+        return (
+          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+        );
+      }
+
+      if ((genderFilter === "Male") && (gender === "Male")) {
+        return (
+          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+        );
+      }
+
+      return null;
+    }
+
+
+    if (filter === "LikeAndLove") {
+      if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
+        if (genderFilter === "Both") {
+          return (
+            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+          );
+        }
+
+        if ((genderFilter === "Female") && (gender === "Female")) {
+          return (
+            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+          );
+        }
+
+        if ((genderFilter === "Male") && (gender === "Male")) {
+          return (
+            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
+          );
+        }
+
+        return null;
       }
 
       return null;
@@ -71,109 +116,31 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "Other") {
       if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-
-      return null;
-    }
-
-    if (filter === "AllBoy") {
-      if ((gender === "Male") || (gender === "Both")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-      
-      return null;
-    }
-
-    if (filter === "LoveBoy") {
-      if ((Grace === "Love") && (Joe === "Love")) {
-        if ((gender === "Male") || (gender === "Both")) {
+        if (genderFilter === "Both") {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
         }
-      }
 
-      return null;
-    }
-
-    if (filter === "LikeAndLoveBoy") {
-      if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
-        if ((gender === "Male") || (gender === "Both")) {
+        if ((genderFilter === "Female") && (gender === "Female")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
         }
-      }
 
-      return null;
-    }
-
-    if (filter === "OtherBoy") {
-      if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        if ((gender === "Male") || (gender === "Both")) {
+        if ((genderFilter === "Male") && (gender === "Male")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
         }
+
+        return null;
       }
 
       return null;
     }
 
-    if (filter === "AllGirl") {
-      if ((gender === "Female") || (gender === "Both")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-
-      return null;
-    }
-
-    if (filter === "LoveGirl") {
-      if ((Grace === "Love") && (Joe === "Love")) {
-        if ((gender === "Female") || (gender === "Both")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-      }
-
-      return null;
-    }
-
-    if (filter === "LikeAndLoveGirl") {
-      if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
-        if ((gender === "Female") || (gender === "Both")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-      }
-
-      return null;
-    }
-
-    if (filter === "OtherGirl") {
-      if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        if ((gender === "Female") || (gender === "Both")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-      }
-
-      return null;
-    }
-    
-    return (
-      <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-    );
+    return null;
   }
 }
 
@@ -183,6 +150,7 @@ ListItem.propTypes = {
 function mapStateToProps(state) {
   return {
     filter: state.toObject().filter,
+    genderFilter: state.toObject().genderFilter
   }
 }
 

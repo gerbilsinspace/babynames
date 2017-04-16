@@ -102,4 +102,8 @@ input {
   margin: 10px;
   border-radius: 4px;
 }
+
+.Select-clear-zone {
+  display: none !important;
+}
 `;
