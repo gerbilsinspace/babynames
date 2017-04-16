@@ -43,23 +43,30 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
       }
     });
 
+    let borderStyling = "1px solid #ddd";
+    let backgroundStyling = "#fff";
+
+    if (babyNameDetails.gender === "Male") {
+      borderStyling = "1px solid #84C1CA";
+      backgroundStyling = "#a4e1eA";
+    } else if (babyNameDetails.gender === "Female") {
+      borderStyling = "1px solid #FAACD8";
+      backgroundStyling = "#FAcCf8";
+    }
+
     return (
-      <div>
+      <div style={{border: borderStyling, background: backgroundStyling}}>
         <h2>{ babyNameDetails.name }</h2>
-        <div style={{padding: "0 10px"}}>
-          <p>Name: { babyNameDetails.name }</p>
-          <p>Gender: { babyNameDetails.gender }</p>
-        </div>
         <form>
-          <input type="button" value={messages.love.defaultMessage} onClick={() => {
+          <input type="button" style={{background: "#fff"}} value={messages.love.defaultMessage} onClick={() => {
             onLikeClick(personChooser, babyNameDetails.name, messages.love.defaultMessage);
           }}></input>
 
-          <input type="button" value={messages.like.defaultMessage} onClick={() => {
+          <input type="button" style={{background: "#fff"}} value={messages.like.defaultMessage} onClick={() => {
             onLikeClick(personChooser, babyNameDetails.name, messages.like.defaultMessage);
           }}></input>
 
-          <input type="button" value={messages.dislike.defaultMessage} onClick={() => {
+          <input type="button" style={{background: "#fff"}} value={messages.dislike.defaultMessage} onClick={() => {
             onLikeClick(personChooser, babyNameDetails.name, messages.dislike.defaultMessage);
           }}></input>
         </form>

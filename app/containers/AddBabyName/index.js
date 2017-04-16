@@ -17,7 +17,7 @@ export class AddBabyName extends React.PureComponent { // eslint-disable-line re
     const { personChooser, menu, addBabyName, babyNames, returnToMainMenu } = this.props;
 
     let name;
-    let gender;
+    let gender = "Both";
 
     return (
       <div>
@@ -31,16 +31,31 @@ export class AddBabyName extends React.PureComponent { // eslint-disable-line re
             return;
           }
 
-          addBabyName(name.value.trim(), gender.value.trim(), babyNames);
+          addBabyName(name.value.trim(), gender.trim(), babyNames);
           returnToMainMenu();
         }}>
-          <input type="text" placeholder={messages.babyName.defaultMessage} ref={(node) => {
-            name = node;
-          }}></input>
-          <input type="text" placeholder={messages.gender.defaultMessage} ref={(node) => {
-            gender = node;
-          }}></input>
-          <input type="submit" value={messages.submit.defaultMessage}></input>
+          <div>
+            <input type="text" placeholder={messages.babyName.defaultMessage} ref={(node) => {
+              name = node;
+            }}></input>
+          </div>
+          <div>
+            <h2><FormattedMessage {...messages.gender} /></h2>  
+          </div>
+          <div>
+            <input type="button" value={messages.male.defaultMessage} style={{border: "1px solid #84C1CA", background: "#a4e1eA"}} onClick={() => {
+              gender = "Male";
+            }}></input>
+            <input type="button" value={messages.female.defaultMessage} style={{border: "1px solid #FAACD8", background: "#FAcCf8"}} onClick={() => {
+              gender = "Female";
+            }}></input>
+            <input type="button" value={messages.both.defaultMessage} onClick={() => {
+              gender = "Both";
+            }}></input>
+          </div>
+          <div>
+            <input type="submit" value={messages.submit.defaultMessage}></input>
+          </div>
         </form>
       </div>
     );

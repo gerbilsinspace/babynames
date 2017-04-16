@@ -18,6 +18,18 @@ export default defineMessages({
   	id: 'app.containers.AddBabyName.gender',
   	defaultMessage: "Gender"
   },
+  male: {
+  	id: 'app.containers.AddBabyName.male',
+  	defaultMessage: "Male"
+  },
+  female: {
+  	id: 'app.containers.AddBabyName.female',
+  	defaultMessage: "Female"
+  },
+ 	both: {
+  	id: 'app.containers.AddBabyName.both',
+  	defaultMessage: "Both"
+  },
   submit: {
   	id: 'app.containers.AddBabyName.submit',
   	defaultMessage: "Add Baby Name"
