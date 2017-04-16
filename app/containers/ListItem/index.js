@@ -15,13 +15,23 @@ import messages from './messages';
 class IncludedListItem extends React.PureComponent {
   render () {
     const { name, gender, Grace, Joe, onEditButtonClick } = this.props;
+    
+    let borderStyling = "1px solid #ddd";
+    let backgroundStyling = "#fff";
+
+    if (gender === "Male") {
+      borderStyling = "1px solid #84C1CA";
+      backgroundStyling = "#a4e1eA";
+    } else if (gender === "Female") {
+      borderStyling = "1px solid #FAACD8";
+      backgroundStyling = "#FAcCf8";
+    }
 
     return (
-      <li style={{margin: "10px", border: "1px solid #ddd", padding: "10px", borderRadius: "3px", display: "inline-block"}}>
-        <h2>{name} <small><input type="button" value="Edit" onClick={() => {
+      <li style={{margin: "10px", border: borderStyling, padding: "10px", borderRadius: "3px", display: "inline-block", background: backgroundStyling}}>
+        <h2>{name} <small><input style={{background: "#fff"}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
-        <p>{gender}</p>
         <p>Grace: {Grace}</p>
         <p>Joe: {Joe}</p>
       </li>
@@ -70,7 +80,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
     }
 
     if (filter === "AllBoy") {
-      if (gender === "Male") {
+      if ((gender === "Male") || (gender === "Both")) {
         return (
           <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
         );
@@ -81,7 +91,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "LoveBoy") {
       if ((Grace === "Love") && (Joe === "Love")) {
-        if (gender === "Male") {
+        if ((gender === "Male") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
@@ -93,7 +103,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "LikeAndLoveBoy") {
       if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
-        if (gender === "Male") {
+        if ((gender === "Male") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
@@ -105,7 +115,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "OtherBoy") {
       if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        if (gender === "Male") {
+        if ((gender === "Male") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
@@ -116,7 +126,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
     }
 
     if (filter === "AllGirl") {
-      if (gender === "Female") {
+      if ((gender === "Female") || (gender === "Both")) {
         return (
           <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
         );
@@ -127,7 +137,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "LoveGirl") {
       if ((Grace === "Love") && (Joe === "Love")) {
-        if (gender === "Female") {
+        if ((gender === "Female") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
@@ -139,7 +149,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "LikeAndLoveGirl") {
       if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
-        if (gender === "Female") {
+        if ((gender === "Female") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
@@ -151,7 +161,7 @@ export class ListItem extends React.PureComponent { // eslint-disable-line react
 
     if (filter === "OtherGirl") {
       if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        if (gender === "Female") {
+        if ((gender === "Female") || (gender === "Both")) {
           return (
             <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
           );
