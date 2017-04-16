@@ -29,7 +29,7 @@ class IncludedListItem extends React.PureComponent {
 
     return (
       <li style={{margin: "10px", border: borderStyling, padding: "10px", borderRadius: "3px", display: "inline-block", background: backgroundStyling}}>
-        <h2>{name} <small><input style={{background: "#fff"}} type="button" value="Edit" onClick={() => {
+        <h2 style={{padding: "0"}}>{name} <small><input style={{background: "#fff"}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
         <p><FormattedMessage {...messages.femaleName} />: {Grace}</p>

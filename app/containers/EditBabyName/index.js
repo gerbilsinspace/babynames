@@ -33,7 +33,7 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
 
     if (!editBabyName) {
       return (
-        <h1>You have finished rating all the Baby Names so far!</h1>
+        <h1><FormattedMessage {...messages.finishedRating} /></h1>
       )
     }
 
@@ -46,8 +46,10 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
     return (
       <div>
         <h2>{ babyNameDetails.name }</h2>
-        <p>Name: { babyNameDetails.name }</p>
-        <p>Gender: { babyNameDetails.gender }</p>
+        <div style={{padding: "0 10px"}}>
+          <p>Name: { babyNameDetails.name }</p>
+          <p>Gender: { babyNameDetails.gender }</p>
+        </div>
         <form>
           <input type="button" value={messages.love.defaultMessage} onClick={() => {
             onLikeClick(personChooser, babyNameDetails.name, messages.love.defaultMessage);
