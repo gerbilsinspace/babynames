@@ -36,7 +36,7 @@ nav ul {
     list-style:none;
 }
 
-h1 {
+h1, h2 {
     padding: 10px;
 }
 blockquote, q {
