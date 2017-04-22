@@ -1,8 +1,8 @@
-import { EDIT_BABY_NAME } from './constants';
+import { BABY_NAME_IN_EDIT_STATE } from './constants';
 
-export function editBabyName(name) {
+export function babyNameInEditState(name) {
 	return {
-		type: EDIT_BABY_NAME,
+		type: BABY_NAME_IN_EDIT_STATE,
 		name
 	}
 }

@@ -22,6 +22,38 @@ export default function createRoutes(store) {
       name: 'home',
       getComponent(nextState, cb) {
         const importModules = Promise.all([
+          import('containers/LoginRegister'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/addName',
+      name: 'addName',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/HomePage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([component]) => {
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      path: '/list',
+      name: 'list',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
           import('containers/HomePage'),
         ]);
 

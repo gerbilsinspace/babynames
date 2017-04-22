@@ -6,14 +6,14 @@
 
 import { fromJS } from 'immutable';
 import {
-  EDIT_BABY_NAME,
+  BABY_NAME_IN_EDIT_STATE,
 } from './constants';
 
 const initialState = '';
 
 function editBabyNameReducer(state = initialState, action) {
   switch (action.type) {
-    case EDIT_BABY_NAME:
+    case BABY_NAME_IN_EDIT_STATE:
       return action.name;
     default:
       return state;

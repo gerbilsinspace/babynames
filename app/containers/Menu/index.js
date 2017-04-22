@@ -10,15 +10,15 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import messages from './messages';
 import { selectMenu } from './actions';
-import { editBabyName } from 'containers/EditBabyName/actions';
+import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { filter } from 'containers/Filter/actions';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { menu, personChooser, onButtonClick, onBackButtonClick, onListButtonClick } = this.props;
+    const { menuState, user, onButtonClick, onBackButtonClick, onListButtonClick } = this.props;
 
-    if (personChooser) {
-      if (!menu) {
+    if (user) {
+      if (!menuState) {
         return (
           <div>
             <h1><FormattedMessage {...messages.header} /></h1>
@@ -41,7 +41,7 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
         );
       }
 
-      if (menu === "rateBabyName") {
+      if (menuState === "rateBabyName") {
         return (
           <form>
             <input type="button" value={messages.back.defaultMessage} onClick={() => {
@@ -75,8 +75,8 @@ Menu.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    menu: state.toObject().menu,
-    personChooser: state.toObject().personChooser
+    menuState: state.toObject().menu,
+    user: state.get('user')
   };
 }
 
@@ -87,12 +87,12 @@ function mapDispatchToProps(dispatch) {
     },
 
     onBackButtonClick: () => {
-      dispatch(editBabyName(""));
+      dispatch(babyNameInEditState(""));
       dispatch(filter('All'));
     },
 
     onListButtonClick: () => {
-      dispatch(editBabyName(""));
+      dispatch(babyNameInEditState(""));
       dispatch(filter('All'));
       dispatch(selectMenu("listBabyNames"));
     }

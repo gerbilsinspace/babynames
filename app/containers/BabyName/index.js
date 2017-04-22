@@ -17,20 +17,15 @@ import messages from './messages';
 
 export class BabyName extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { personChooser, menu } = this.props;
-
-    if (personChooser) {
-      if (menu === "addBabyName") {
-        return (<AddBabyName />);
-      } else if (menu === "rateBabyName") {
-        return (<EditBabyName />);
-      } else if (menu === "listBabyNames") {
-        return (
-          <List />
-        );
-      }
-
-      return null;
+    const { menu } = this.props;
+    if (menu === "addBabyName") {
+      return (<AddBabyName />);
+    } else if (menu === "rateBabyName") {
+      return (<EditBabyName />);
+    } else if (menu === "listBabyNames") {
+      return (
+        <List />
+      );
     }
 
     return null;
@@ -43,7 +38,6 @@ BabyName.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    personChooser: state.toObject().personChooser,
     menu: state.toObject().menu,
   };
 }

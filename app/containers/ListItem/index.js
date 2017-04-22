@@ -7,15 +7,14 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
-import { editBabyName } from 'containers/EditBabyName/actions';
+import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { selectMenu } from 'containers/Menu/actions';
 
 import messages from './messages';
 
 class IncludedListItem extends React.PureComponent {
   render () {
-    const { name, gender, Grace, Joe, onEditButtonClick } = this.props;
-    
+    const { name, gender, onEditButtonClick, ratings = []} = this.props;
     let borderStyling = "1px solid #ddd";
     let backgroundStyling = "#fff";
 
@@ -32,8 +31,17 @@ class IncludedListItem extends React.PureComponent {
         <h2 style={{padding: "0"}}>{name} <small><input style={{background: "#fff", margin: '0'}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
-        <p><FormattedMessage {...messages.femaleName} />: {Grace}</p>
-        <p><FormattedMessage {...messages.maleName} />: {Joe}</p>
+        <ul>
+          {
+            ratings.map((rating, ratingId) => {
+              return (
+                <li key={ratingId}>
+                  {rating.name}: {rating.rating}
+                </li>
+              );
+            })
+          }
+        </ul>
       </li>
     );
   }
@@ -41,106 +49,67 @@ class IncludedListItem extends React.PureComponent {
 
 export class ListItem extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { name, gender, Grace, Joe, filter, genderFilter, onEditButtonClick } = this.props;
+    const { name, gender, filter, genderFilter, onEditButtonClick, ratings = [] } = this.props;
+    
+    const shouldRender = () => {
+      let shouldElementRender = true;
 
-    if (filter === "All") {
-      if (genderFilter === "Both") {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
+      if (genderFilter === "Female") {
+        if (gender === "Male") {
+          shouldElementRender = false;
+        }
+      } 
+
+      if (genderFilter === "Male") {
+        if (gender === "Female") {
+          shouldElementRender = false;
+        }
       }
 
-      if ((genderFilter === "Female") && (gender === "Female")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
+      if (filter === "Love") {
+        let hasAnythingOtherThanLoveBeenSeen = false;
+
+        ratings.forEach((rating) => {
+          if (rating.rating !== "Love") {
+            hasAnythingOtherThanLoveBeenSeen = true;
+          }
+        });
+
+        if (hasAnythingOtherThanLoveBeenSeen) {
+          shouldElementRender = false;
+        }
       }
 
-      if ((genderFilter === "Male") && (gender === "Male")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
+      if (filter === "LikeAndLove") {
+        ratings.forEach((rating) => {
+          if (rating.rating === "Dislike") {
+            shouldElementRender = false;
+          }
+        });
       }
 
-      return null;
+      if (filter === "Other") {
+        let hasDislikeBeenSeen = false;
+
+        ratings.forEach((rating) => {
+          if (rating.rating === "Dislike") {
+            hasDislikeBeenSeen = true;
+          }
+        });
+
+        if (!hasDislikeBeenSeen) {
+          shouldElementRender = false;
+        }
+      }
+
+      return shouldElementRender;
     }
 
-    if ((filter === "Love") && ((Grace === "Love") && (Joe === "Love"))) {
-      if (genderFilter === "Both") {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-
-      if ((genderFilter === "Female") && (gender === "Female")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-
-      if ((genderFilter === "Male") && (gender === "Male")) {
-        return (
-          <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-        );
-      }
-
-      return null;
+    if (shouldRender()) {
+      return (<IncludedListItem name={name} gender={gender} onEditButtonClick={onEditButtonClick} ratings={ratings} />);  
     }
-
-
-    if (filter === "LikeAndLove") {
-      if (((Grace === "Love") || (Grace === "Like")) && ((Joe === "Love") || (Joe === "Like"))) {
-        if (genderFilter === "Both") {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        if ((genderFilter === "Female") && (gender === "Female")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        if ((genderFilter === "Male") && (gender === "Male")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        return null;
-      }
-
-      return null;
-    }
-
-    if (filter === "Other") {
-      if ((Grace === "Dislike") || (Joe === "Dislike")) {
-        if (genderFilter === "Both") {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        if ((genderFilter === "Female") && (gender === "Female")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        if ((genderFilter === "Male") && (gender === "Male")) {
-          return (
-            <IncludedListItem name={name} gender={gender} Grace={Grace} Joe={Joe} onEditButtonClick={onEditButtonClick} />
-          );
-        }
-
-        return null;
-      }
-
-      return null;
-    }
-
     return null;
+    
   }
 }
 
@@ -157,7 +126,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onEditButtonClick: (nameToEdit) => {
-      dispatch(editBabyName(nameToEdit));
+      dispatch(babyNameInEditState(nameToEdit));
       dispatch(selectMenu('rateBabyName'));
     }
   };

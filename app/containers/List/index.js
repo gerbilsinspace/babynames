@@ -23,12 +23,15 @@ export class List extends React.PureComponent { // eslint-disable-line react/pre
         <Filter />
         <div style={{clear: "both"}}></div>
         <ul>
-          {babyNames.map(babyName =>
-            <ListItem
-              key={babyName.id}
-              {...babyName}
-            />
-          )}
+          {babyNames.map((babyName, babyNameId) => {
+            return (
+              <ListItem
+                key={babyNameId}
+                ratings={babyName.ratings}
+                {...babyName}
+              />
+            );
+          })}
         </ul>
       </div>
     );

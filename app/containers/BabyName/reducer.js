@@ -19,11 +19,9 @@ function babyNameReducer(state = initialState, action) {
       return [
       	...state,
       	{
-      		id: action.id,
       		name: action.name,
       		gender: action.gender,
-      		Grace: action.Grace,
-      		Joe: action.Joe
+      		ratings: action.ratings
       	}
       ];
     case EDIT_BABY_NAME:
@@ -32,8 +30,7 @@ function babyNameReducer(state = initialState, action) {
     			babyName = {
     				name: action.name,
     				gender: action.gender,
-    				Grace: action.Grace,
-    				Joe: action.Joe
+    				ratings: action.ratings
     			}
     		}
 

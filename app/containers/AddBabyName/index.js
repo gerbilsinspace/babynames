@@ -14,7 +14,7 @@ import messages from './messages';
 
 export class AddBabyName extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { personChooser, menu, addBabyName, babyNames, returnToMainMenu } = this.props;
+    const { menu, appId, addBabyName, babyNames, returnToMainMenu } = this.props;
 
     let name;
     let gender = "Both";
@@ -68,16 +68,16 @@ AddBabyName.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    personChooser: state.toObject().personChooser,
-    menu: state.toObject().menu,
-    babyNames: state.toObject().babyNames,
+    menu: state.get('menu'),
+    appId: state.get('appId'),
+    babyNames: state.get('babyNames'),
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    addBabyName: (babyNames, name, gender) => {
-      firebase.addBabyName(babyNames, name, gender);
+    addBabyName: (name, gender, babyNames) => {
+      firebase.addBabyName(name, gender, babyNames);
     },
     returnToMainMenu: () => {
       dispatch(selectMenu(''));

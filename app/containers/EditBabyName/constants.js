@@ -4,4 +4,4 @@
  *
  */
 
-export const EDIT_BABY_NAME = 'app/EditBabyName/EDIT_BABY_NAME';
+export const BABY_NAME_IN_EDIT_STATE = 'app/EditBabyName/BABY_NAME_IN_EDIT_STATE';

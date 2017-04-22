@@ -9,23 +9,20 @@ import {
   EDIT_BABY_NAME
 } from './constants';
 
-export function addBabyName(id, name, gender, Grace = "", Joe = "") {
+export function addBabyName(name, gender, ratings) {
   return {
     type: ADD_BABY_NAME,
-    id,
   	name,
   	gender,
-  	Grace,
-  	Joe
+  	ratings
   };
 }
 
-export function editBabyName(babyNameObject) {
+export function editBabyName(name, gender, ratings) {
 	return {
 		type: EDIT_BABY_NAME,
-		name: babyNameObject.name,
-		gender: babyNameObject.gender,
-		Grace: babyNameObject.Grace,
-		Joe: babyNameObject.Joe
+		name,
+    gender,
+    ratings
 	}
 }

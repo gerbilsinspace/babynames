@@ -9,36 +9,38 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import firebase from 'data/firebase';
 import { selectMenu } from 'containers/Menu/actions';
-import { editBabyName } from 'containers/EditBabyName/actions';
+import { babyNameInEditState } from 'containers/EditBabyName/actions';
+import { addItemToLoading, removeItemFromLoading } from 'containers/Loading/actions';
 import messages from './messages';
 
 export class EditBabyName extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
-    const { babyNames, personChooser, onLikeClick } = this.props;
-    let {editBabyName = ""} = this.props;
-
+    const { appId, babyNames, user, onLikeClick } = this.props;
+    let {babyNameInEditState = ""} = this.props;
     let babyNameDetails = {};
 
-    if (!editBabyName) {  
-      for (var babyNameIndex = 0; babyNameIndex < babyNames.length; babyNameIndex++) {
-        const babyName = babyNames[babyNameIndex];
-
-        
-        if ((babyName[personChooser] === "") || (babyName[personChooser] === undefined)) {
-          editBabyName = babyName.name;
-          break;
+    if (!babyNameInEditState) { // choose a baby name that hasn't been edited to edit
+      babyNames.forEach((babyName) => {
+        if (babyName.ratings) {
+          babyName.ratings.forEach((rating) => {
+            if (rating.name === undefined) {
+              babyNameInEditState = babyName.name;
+            }
+          });
+        } else {
+          babyNameInEditState = babyName.name;
         }
-      }
+      });
     }
 
-    if (!editBabyName) {
+    if (!babyNameInEditState) {
       return (
         <h1><FormattedMessage {...messages.finishedRating} /></h1>
       )
     }
 
     babyNames.forEach((babyName) => {
-      if (babyName.name === editBabyName) {
+      if (babyName.name === babyNameInEditState) {
         babyNameDetails = babyName;
       }
     });
@@ -59,15 +61,15 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
         <h2>{ babyNameDetails.name }</h2>
         <form>
           <input type="button" style={{background: "#fff"}} value={messages.love.defaultMessage} onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, messages.love.defaultMessage);
+            onLikeClick(appId, user.name, babyNameDetails.name, messages.love.defaultMessage);
           }}></input>
 
           <input type="button" style={{background: "#fff"}} value={messages.like.defaultMessage} onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, messages.like.defaultMessage);
+            onLikeClick(appId, user.name, babyNameDetails.name, messages.like.defaultMessage);
           }}></input>
 
           <input type="button" style={{background: "#fff"}} value={messages.dislike.defaultMessage} onClick={() => {
-            onLikeClick(personChooser, babyNameDetails.name, messages.dislike.defaultMessage);
+            onLikeClick(appId, user.name, babyNameDetails.name, messages.dislike.defaultMessage);
           }}></input>
         </form>
       </div>
@@ -80,17 +82,19 @@ EditBabyName.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    editBabyName: state.toObject().editBabyName,
-    babyNames: state.toObject().babyNames,
-    personChooser: state.toObject().personChooser
+    babyNameInEditState: state.get('babyNameInEditState'),
+    babyNames: state.get('babyNames'),
+    appId: state.get('appId'),
+    user: state.get('user'),
+    personChooser: state.get('personChooser')
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLikeClick: (personChooser, babyName, likeFactor) => {
-      firebase.editBabyName(personChooser, babyName, likeFactor);
-      dispatch(editBabyName(''));
+    onLikeClick: (appId, userName, babyName, rating) => {
+      firebase.editBabyName(appId, userName, babyName, rating);
+      dispatch(babyNameInEditState(''));
     }
   };
 }

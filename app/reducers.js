@@ -14,7 +14,9 @@ import editBabyNameReducer from 'containers/EditBabyName/reducer';
 import menuReducer from 'containers/Menu/reducer';
 import filterReducer from 'containers/Filter/reducer';
 import genderFilterReducer from 'containers/GenderFilter/reducer';
-
+import loadingReducer from 'containers/Loading/reducer';
+import userReducer from 'containers/User/reducer';
+import appIdReducer from 'containers/AppId/reducer';
 /*
  * routeReducer
  *
@@ -52,10 +54,13 @@ export default function createReducer(asyncReducers) {
     language: languageProviderReducer,
     personChooser: personChooserReducer,
     babyNames: babyNameReducer,
-    editBabyName: editBabyNameReducer,
+    babyNameInEditState: editBabyNameReducer,
     menu: menuReducer,
     filter: filterReducer,
     genderFilter: genderFilterReducer,
+    loading: loadingReducer,
+    user: userReducer,
+    appId: appIdReducer,
     ...asyncReducers,
   });
 }

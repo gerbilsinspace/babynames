@@ -14,12 +14,10 @@ import PersonChooser from 'containers/PersonChooser';
 import Menu from 'containers/Menu';
 import BabyName from 'containers/BabyName';
 
-
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
     	<div style={{margin: "20px auto", maxWidth: "800px", }}>
-      	<PersonChooser />
       	<Menu />
       	<BabyName />
       </div>
