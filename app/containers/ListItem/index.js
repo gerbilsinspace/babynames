@@ -27,7 +27,7 @@ class IncludedListItem extends React.PureComponent {
     }
 
     return (
-      <li style={{margin: "10px", border: borderStyling, padding: "10px", borderRadius: "3px", display: "inline-block", background: backgroundStyling}}>
+      <li style={{'flex': 1, 'borderRadius': '2px', margin: "10px", border: borderStyling, padding: "10px", display: "inline-block", background: backgroundStyling, 'flexBasis': '25%'}}>
         <h2 style={{padding: "0"}}>{name} <small><input style={{background: "#fff", margin: '0'}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>

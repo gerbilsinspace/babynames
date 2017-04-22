@@ -126,7 +126,7 @@ const app = {
 		});
 	},
 
-	addBabyName: (name, gender, babyNames) => {
+	addBabyName: (name, gender, babyNames, appId) => {
 		const database = firebase.database().ref('babyNames/' + appId + '/names/' + name + '/');
 		let hasBeenSeen = -1;
 

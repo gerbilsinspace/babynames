@@ -13,14 +13,20 @@ import React from 'react';
 import PersonChooser from 'containers/PersonChooser';
 import Menu from 'containers/Menu';
 import BabyName from 'containers/BabyName';
+import ArticleContainer from 'containers/ArticleContainer';
+import AppContainer from 'components/AppContainer';
+import HeaderContainer from 'containers/HeaderContainer';
 
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
-    	<div style={{margin: "20px auto", maxWidth: "800px", }}>
-      	<Menu />
-      	<BabyName />
-      </div>
+    	<AppContainer>
+        <HeaderContainer />
+        <ArticleContainer>
+	      	<Menu />
+	      	<BabyName />
+		    </ArticleContainer>
+		  </AppContainer>
     );
   }
 }

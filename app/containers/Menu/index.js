@@ -12,6 +12,7 @@ import messages from './messages';
 import { selectMenu } from './actions';
 import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { filter } from 'containers/Filter/actions';
+import Input from 'components/Input';
 import firebase from 'data/firebase';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -21,52 +22,47 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
     if (user) {
       if (!menuState) {
         return (
-          <div>
-            <h1><FormattedMessage {...messages.header} /></h1>
+          <form style={{'display': 'flex', 'flexDirection': 'column'}}>
+            <Input type="button" value={messages.addBabyName.defaultMessage} onClick={() => {
+              onButtonClick("addBabyName")
+            }}></Input>
 
-            <form>
-              <input type="button" value={messages.addBabyName.defaultMessage} onClick={() => {
-                onButtonClick("addBabyName")
-              }}></input>
+            <Input type="button" value={messages.rateBabyName.defaultMessage} onClick={() => {
+              onButtonClick("rateBabyName")
+            }}></Input>          
 
-              <input type="button" value={messages.rateBabyName.defaultMessage} onClick={() => {
-                onButtonClick("rateBabyName")
-              }}></input>          
+            <Input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
+              onButtonClick("listBabyNames")
+            }}></Input>
 
-              <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
-                onButtonClick("listBabyNames")
-              }}></input>
-
-              <input type="button" value={messages.logout.defaultMessage} onClick={() => {
-                firebase.logout();
-              }}></input>
-
-            </form>
-          </div>
+            <Input type="button" value={messages.logout.defaultMessage} onClick={() => {
+              firebase.logout();
+            }}></Input>
+          </form>
         );
       }
 
       if (menuState === "rateBabyName") {
         return (
           <form>
-            <input type="button" value={messages.back.defaultMessage} onClick={() => {
+            <Input type="button" value={messages.back.defaultMessage} onClick={() => {
               onBackButtonClick();
               onButtonClick("");
-            }}></input>
+            }}></Input>
 
-            <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
+            <Input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
               onListButtonClick();
-            }}></input>
+            }}></Input>
           </form>
         );
       }
 
       return (
         <form>
-          <input type="button" value={messages.back.defaultMessage} onClick={() => {
+          <Input type="button" value={messages.back.defaultMessage} onClick={() => {
             onBackButtonClick();
             onButtonClick("");
-          }}></input>
+          }}></Input>
         </form>
       );
     }

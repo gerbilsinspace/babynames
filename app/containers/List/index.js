@@ -22,7 +22,7 @@ export class List extends React.PureComponent { // eslint-disable-line react/pre
         <GenderFilter />
         <Filter />
         <div style={{clear: "both"}}></div>
-        <ul>
+        <ul style={{'display': 'flex', 'flexWrap': 'wrap'}}>
           {babyNames.map((babyName, babyNameId) => {
             return (
               <ListItem
