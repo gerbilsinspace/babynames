@@ -26,4 +26,8 @@ export default defineMessages({
     id: 'app.containers.Menu.back',
     defaultMessage: 'Menu',
   },
+  logout: {
+    id: 'app.containers.Menu.logout',
+    defaultMessage: 'Log Out',
+  },
 });

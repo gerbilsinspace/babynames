@@ -24,6 +24,8 @@ import ButtonBox from 'components/ButtonBox';
 
 import firebase from 'data/firebase';
 
+import { addItemToLoading } from 'containers/Loading/actions';
+
 import messages from './messages';
 
 const LoginInput = styled(Input)`
@@ -66,8 +68,7 @@ export class LoginRegister extends React.PureComponent { // eslint-disable-line 
   }
 
   render() {
-    const { loading, user } = this.props;
-
+    const { loading, user, handleUserLoading } = this.props;
     if (loading.length > 0) {
       return (<Loading />);
     }
@@ -90,8 +91,14 @@ export class LoginRegister extends React.PureComponent { // eslint-disable-line 
             <Input type="email" placeholder="Email" onChange={this.handleEmailChange}></Input>
             <Input type="password" placeholder="Password" onChange={this.handlePasswordChange}></Input>
             <ButtonBox>
-              <LoginInput type="button" value="Login" onClick={this.handleLoginSubmit}></LoginInput>
-              <RegisterInput type="button" value="Register" onClick={this.handleRegisterSubmit}></RegisterInput>
+              <LoginInput type="button" value="Login" onClick={() => {
+               handleUserLoading();
+               this.handleLoginSubmit();
+              }}></LoginInput>
+              <RegisterInput type="button" value="Register" onClick={() => {
+               handleUserLoading();
+               this.handleRegisterSubmit(); 
+              }}></RegisterInput>
             </ButtonBox>
           </Form>
         </ArticleContainer>
@@ -111,8 +118,11 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
   return {
+    handleUserLoading: () => {
+      dispatch(addItemToLoading('user'));
+    }
   };
 }
 

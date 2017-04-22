@@ -13,7 +13,10 @@ const initialState = '';
 function appIdReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_APP_ID:
-      return action.appId;
+    	if (action.appId) {
+    		return action.appId;	
+    	}
+      return initialState;
     default:
       return state;
   }

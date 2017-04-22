@@ -12,6 +12,7 @@ import messages from './messages';
 import { selectMenu } from './actions';
 import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { filter } from 'containers/Filter/actions';
+import firebase from 'data/firebase';
 
 export class Menu extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
@@ -34,6 +35,10 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
 
               <input type="button" value={messages.listBabyNames.defaultMessage} onClick={() => {
                 onButtonClick("listBabyNames")
+              }}></input>
+
+              <input type="button" value={messages.logout.defaultMessage} onClick={() => {
+                firebase.logout();
               }}></input>
 
             </form>

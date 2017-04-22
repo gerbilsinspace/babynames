@@ -21,7 +21,11 @@ function loadingReducer(state = initialState, action) {
     		return item === action.item;
     	});
      	
-     	return state.remove(itemIndex);
+      if (itemIndex > -1) {
+        return state.remove(itemIndex);  
+      }
+      return state;
+     	
     default:
       return state;
   }

@@ -32,11 +32,13 @@ const app = {
 		if (user) {
 	  	const userId = user.uid;
 	  	console.log('there is a user logged in, setting up the app');
+
 	  	const userDatabase = firebase.database().ref('users/' + userId);
 
 	  	userDatabase.once('value', ((userSnapshot) => {
 	  		if (!userSnapshot.val()) { // register
 	  			console.log('user hasn\'t logged in before, setting up their user and babyNameApp');
+	  			
 	  			const babyNameAppDatabase = firebase.database().ref('babyNames/');
 	  			const singleBabyNameDatabase = babyNameAppDatabase.push();
 	  			const babyNameId = singleBabyNameDatabase.key;
@@ -64,7 +66,10 @@ const app = {
 	  	}));
 	  } else {
 	    // No user is signed in.
+	    store.dispatch(updateUser());
+	    store.dispatch(updateAppId());
 	    store.dispatch(removeItemFromLoading('firebaseSetup'));
+	    store.dispatch(removeItemFromLoading('user'));
 	  }
 	},
 
@@ -91,28 +96,33 @@ const app = {
 		const database = firebase.database().ref('babyNames/' + babyNameAppId + '/names/');
 
 		database.on('value', (snapshot) => {
-			const babyNamesInDatabase = Object.values(snapshot.val());
-			let babyNamesInWebsite = store.getState().toObject().babyNames;
-	
-			console.log('changing value of names');
+			if (snapshot.val()) {
+				const babyNamesInDatabase = Object.values(snapshot.val());
+				let babyNamesInWebsite = store.getState().get('babyNames');
 
-			babyNamesInDatabase.forEach((babyNameInDatabase, babyNameId) => {
-				var hasBeenSeen = false;
+				console.log('changing value of names');
 
-				babyNamesInWebsite.forEach((babyNameInWebsite) => {
-					if (babyNameInDatabase.name === babyNameInWebsite.name) {
-						hasBeenSeen = babyNameInDatabase;
-					}
-				});
+				if (babyNamesInDatabase) {
+					babyNamesInDatabase.forEach((babyNameInDatabase, babyNameId) => {
+						var hasBeenSeen = false;
 
-				if (hasBeenSeen) {
-					store.dispatch(editBabyName(babyNameInDatabase.name, babyNameInDatabase.gender, babyNameInDatabase.ratings));
-				} else {
-					store.dispatch(addBabyName(babyNameInDatabase.name, babyNameInDatabase.gender, babyNameInDatabase.ratings));
+						babyNamesInWebsite.forEach((babyNameInWebsite) => {
+							if (babyNameInDatabase.name === babyNameInWebsite.name) {
+								hasBeenSeen = babyNameInDatabase;
+							}
+						});
+
+						if (hasBeenSeen) {
+							store.dispatch(editBabyName(babyNameInDatabase.name, babyNameInDatabase.gender, babyNameInDatabase.ratings));
+						} else {
+							store.dispatch(addBabyName(babyNameInDatabase.name, babyNameInDatabase.gender, babyNameInDatabase.ratings));
+						}
+					});
 				}
-			});
+			}
 
 			store.dispatch(removeItemFromLoading('firebaseSetup'));
+			store.dispatch(removeItemFromLoading('user'));
 		});
 	},
 
@@ -172,6 +182,13 @@ const app = {
 
 	login: (email, password) => {
 		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+		  var errorCode = error.code;
+		  var errorMessage = error.message;
+		});
+	},
+
+	logout: () => {
+		firebase.auth().signOut().catch(function(error) {
 		  var errorCode = error.code;
 		  var errorMessage = error.message;
 		});

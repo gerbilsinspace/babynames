@@ -14,10 +14,13 @@ const initialState = fromJS({});
 function userReducer(state = initialState, action) {
   switch (action.type) {
     case UPDATE_USER:
-      return {
-      	id: action.id,
-      	name: action.name
-      };
+      if (action.id) {
+        return {
+          id: action.id,
+          name: action.name
+        };  
+      }
+      return initialState;
     default:
       return state;
   }
