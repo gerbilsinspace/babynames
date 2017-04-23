@@ -7,10 +7,28 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import styled from 'styled-components';
 import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { selectMenu } from 'containers/Menu/actions';
 
 import messages from './messages';
+
+const ListItemStyling = styled.li`
+  flex: 1; 
+  border-radius: 2px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  flex-basis: 25%;
+
+  @media screen and (max-width: 800px) {
+    flex-basis: 45%;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-basis: 95%;
+  }
+`;
 
 class IncludedListItem extends React.PureComponent {
   render () {
@@ -27,7 +45,7 @@ class IncludedListItem extends React.PureComponent {
     }
 
     return (
-      <li style={{'flex': 1, 'borderRadius': '2px', margin: "10px", border: borderStyling, padding: "10px", display: "inline-block", background: backgroundStyling, 'flexBasis': '25%'}}>
+      <ListItemStyling style={{'border': borderStyling, 'background': backgroundStyling}}>
         <h2 style={{padding: "0"}}>{name} <small><input style={{background: "#fff", margin: '0'}} type="button" value="Edit" onClick={() => {
           onEditButtonClick(name)
         }}></input></small></h2>
@@ -42,7 +60,7 @@ class IncludedListItem extends React.PureComponent {
             })
           }
         </ul>
-      </li>
+      </ListItemStyling>
     );
   }
 }
