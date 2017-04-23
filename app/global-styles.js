@@ -25,6 +25,7 @@ time, mark, audio, video, button {
 
 body {
     line-height:1;
+    background: #e5e5e5;
 }
 
 article,aside,details,figcaption,figure,
