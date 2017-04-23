@@ -12,6 +12,7 @@ import messages from './messages';
 import { selectMenu } from './actions';
 import { babyNameInEditState } from 'containers/EditBabyName/actions';
 import { filter } from 'containers/Filter/actions';
+import { genderFilter } from 'containers/GenderFilter/actions';
 import Input from 'components/Input';
 import firebase from 'data/firebase';
 
@@ -90,11 +91,13 @@ function mapDispatchToProps(dispatch) {
     onBackButtonClick: () => {
       dispatch(babyNameInEditState(""));
       dispatch(filter('All'));
+      dispatch(genderFilter('Both'));
     },
 
     onListButtonClick: () => {
       dispatch(babyNameInEditState(""));
       dispatch(filter('All'));
+      dispatch(genderFilter('Both'));
       dispatch(selectMenu("listBabyNames"));
     }
   };
