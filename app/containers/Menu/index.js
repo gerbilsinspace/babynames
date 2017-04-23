@@ -45,7 +45,7 @@ export class Menu extends React.PureComponent { // eslint-disable-line react/pre
       if (menuState === "rateBabyName") {
         return (
           <form>
-            <Input type="button" value={messages.back.defaultMessage} onClick={() => {
+            <Input type="button" value={messages.back.defaultMessage} style={{marginRight: "10px"}}onClick={() => {
               onBackButtonClick();
               onButtonClick("");
             }}></Input>
