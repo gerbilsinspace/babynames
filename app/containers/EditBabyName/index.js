@@ -22,11 +22,19 @@ export class EditBabyName extends React.PureComponent { // eslint-disable-line r
     if (!babyNameInEditState) { // choose a baby name that hasn't been edited to edit
       babyNames.forEach((babyName) => {
         if (babyName.ratings) {
-          babyName.ratings.forEach((rating) => {
+          let hasUserRated = false;
+
+          babyName.ratings.forEach((rating) => {  
             if (rating.name === undefined) {
               babyNameInEditState = babyName.name;
+            } else if (rating.name === user.name) {
+              hasUserRated = true;
             }
           });
+
+          if (hasUserRated === false) {
+            babyNameInEditState = babyName.name;
+          }
         } else {
           babyNameInEditState = babyName.name;
         }
