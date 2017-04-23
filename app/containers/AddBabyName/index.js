@@ -45,13 +45,13 @@ export class AddBabyName extends React.PureComponent { // eslint-disable-line re
           }}></input>
             <h2 style={{'flex': 1, 'paddingLeft': 0, 'paddingRight': 0}}><FormattedMessage {...messages.gender} /></h2>  
           <div style={{'display': 'flex'}}>
-            <Input type="button" value={messages.male.defaultMessage} style={{border: "1px solid #84C1CA", margin: "10px", background: "#a4e1eA"}} onClick={() => {
+            <Input type="button" value={messages.male.defaultMessage} style={{border: "1px solid #84C1CA", margin: "10px 10px 10px 0", background: "#a4e1eA"}} onClick={() => {
               gender = "Male";
             }}></Input>
             <Input type="button" value={messages.female.defaultMessage} style={{border: "1px solid #FAACD8", margin: "10px", background: "#FAcCf8"}} onClick={() => {
               gender = "Female";
             }}></Input>
-            <Input type="button" value={messages.both.defaultMessage} style={{margin: "10px"}} onClick={() => {
+            <Input type="button" value={messages.both.defaultMessage} style={{margin: "10px 0 10px 10px"}} onClick={() => {
               gender = "Both";
             }}></Input>
           </div>
