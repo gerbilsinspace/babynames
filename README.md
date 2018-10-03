@@ -1,5 +1,7 @@
 # Baby Name Discussion Tool
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/gerbilsinspace/babynames.svg)](https://greenkeeper.io/)
+
 Because my Wife and I can't make a decision without an app.
 
 ## Prerequisites
